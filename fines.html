@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Fine Details</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Fine Management</h2>
+        
+        <table border="1" style="width:100%; border-collapse: collapse; margin-top: 20px;">
+            <thead>
+                <tr style="background-color: #f2f2f2;">
+                    <th>Student</th>
+                    <th>Book</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for f in fines %}
+                <tr>
+                    <td>{{ f.student_name }}</td>
+                    <td>{{ f.book }}</td>
+                    <td>{{ f.amount }}</td>
+                    <td>{{ f.status }}</td>
+                    <td>
+                        <a href="{{ url_for('pay_fine', fine_id=f.id) }}">Mark Paid</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <br>
+        <a href="/">Back to Dashboard</a>
+    </div>
+</body>
+</html> 

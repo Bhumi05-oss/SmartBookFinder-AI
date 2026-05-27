@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>AI System</title>
+</head>
+<body>
+    <div class="container">
+        <h2>📚 AI Recommendation & Summarizer</h2>
+        
+        <section>
+            <h3>🎯 Book Recommendation</h3>
+            <form method="POST">
+                <input type="text" name="interest" placeholder="Enter interest (ai, history...)">
+                <button type="submit" name="recommend">Recommend</button>
+            </form>
+        </section>
+
+        <section>
+            <h3>✂️ Text Summarizer</h3>
+            <form method="POST">
+                <textarea name="text_to_summarize" placeholder="Enter text here..."></textarea><br>
+                <button type="submit" name="summarize">Summarize</button>
+            </form>
+        </section>
+
+        <div class="output">
+            <h3>Output:</h3>
+            <ul>
+                {% for rec in recs %}
+                    <li>{{ rec }}</li>
+                {% endfor %}
+            </ul>
+            <p>{{ summary }}</p>
+        </div>
+        <a href="/">Back to Dashboard</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Manage Students</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Manage Students</h2>
+        
+        <form method="POST" style="margin-bottom: 20px;">
+            <input type="text" name="student_name" placeholder="Student Name" required>
+            <input type="text" name="roll" placeholder="Roll Number" required>
+            <button type="submit">Add Student</button>
+        </form>
+
+        <hr>
+
+        <table style="width:100%; border-collapse: collapse; margin-top: 20px;">
+            <thead>
+                <tr style="background-color: #f2f2f2;">
+                    <th style="padding: 12px; border-bottom: 2px solid #ddd; text-align: left;">ID</th>
+                    <th style="padding: 12px; border-bottom: 20px solid #ddd; text-align: left;">Name</th>
+                    <th style="padding: 12px; border-bottom: 2px solid #ddd; text-align: left;">Roll No.</th>
+                    <th style="padding: 12px; border-bottom: 2px solid #ddd; text-align: left;">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in students %}
+                <tr>
+                    <td style="padding: 10px; border-bottom: 1px solid #eee;">{{ s.id }}</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #eee;">{{ s.name }}</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #eee;">{{ s.roll }}</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #eee;">
+                        <a href="{{ url_for('delete_student', student_id=s.id) }}" 
+                           style="color: red; text-decoration: none; font-weight: bold;"
+                           onclick="return confirm('Delete this student?')">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <br>
+        <a href="/">← Back to Dashboard</a>
+    </div>
+</body>
+</html>
